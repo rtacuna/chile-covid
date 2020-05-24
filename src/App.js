@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import CommunePicker from './components/CommunePicker'
+import Chart from './components/Chart'
+import './assets/css/application.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import coronaImage from './assets/images/icono_virus.png'
+
+import { fetchCommuneData } from './api/v1/index'
+class App extends React.Component {
+
+  state = {
+    commune: '',
+    data: null
+  }
+
+  handleCommune = async (commune) => {
+    if (commune) {
+      const data = await fetchCommuneData(commune)
+      this.setState({ commune: commune, data: data })
+    } else {
+      this.setState({ commune: commune, data: null })
+    }
+  }
+
+  render () {
+    return(
+      <div className='container'>
+        <img className='coronaImage' src={coronaImage} alt='COVID' />
+        <h1>Casos confirmados según informe epidemiológico por comuna</h1>
+        <CommunePicker handleCommune={this.handleCommune}/>
+        <Chart  data={this.state.data} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
