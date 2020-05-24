@@ -19,3 +19,14 @@
   width: 400px;
   margin-top: 10px;
 }
+
+.tittleLabel {
+  text-align: center;
+}
+
+
+@media (max-width: 770px) {
+  .chart {
+    width: 100%;
+  }
+}

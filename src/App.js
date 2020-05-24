@@ -26,7 +26,7 @@ class App extends React.Component {
     return(
       <div className='container'>
         <img className='coronaImage' src={coronaImage} alt='COVID' />
-        <h1>Casos confirmados según informe epidemiológico por comuna</h1>
+        <h1 className='tittleLabel'>Casos confirmados acumulados según informe epidemiológico por comuna</h1>
         <CommunePicker handleCommune={this.handleCommune}/>
         <Chart  data={this.state.data} />
       </div>
