@@ -45,3 +45,13 @@ export const fetchCommuneData = async (commune) => {
     return { result: result, resultDate: resultDate }
   } catch (error) { console.log(error) }
 }
+
+export const fetchDataChile = async () => {
+  const url = 'https://covid19.mathdro.id/api/countries/chile'
+  try {
+    const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(url)
+    return { confirmed, recovered, deaths, lastUpdate }
+  } catch ( error ) {
+
+  }
+}

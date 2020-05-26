@@ -25,9 +25,21 @@
   text-align: center;
 }
 
+.card-container {
+  margin-bottom: 30px;
+}
+
+.card {
+  margin: 0 2% !important;
+}
+
 
 @media (max-width: 770px) {
   .chart {
     width: 100%;
+  }
+
+  .card {
+    margin: 2% 0 !important;
   }
 }
