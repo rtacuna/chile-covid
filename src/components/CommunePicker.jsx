@@ -24,7 +24,7 @@ const CommunePicker = ({ handleCommune }) => {
             {comunes.map((comune) => <option key={comune.id} value={comune.id}>{comune.name}</option>)}
           </NativeSelect>
         </FormControl>
-      : null}
+      : <h2>Cargando ...</h2>}
     </div>
   )
 

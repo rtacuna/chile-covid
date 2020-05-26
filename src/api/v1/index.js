@@ -36,6 +36,12 @@ export const fetchCommuneData = async (commune) => {
       date: key,
       confirmed: confirmed[key]
     }))
-    return result
+    var dateBefore = 0
+    var resultDate = Object.keys(confirmed).map((key) => {
+      let auxData = dateBefore
+      dateBefore = confirmed[key]
+      return ({ date: key, confirmed: (confirmed[key] - auxData) })
+    })
+    return { result: result, resultDate: resultDate }
   } catch (error) { console.log(error) }
 }

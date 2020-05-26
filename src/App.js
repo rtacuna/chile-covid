@@ -10,15 +10,16 @@ class App extends React.Component {
 
   state = {
     commune: '',
-    data: null
+    data: null,
+    dataDate: null
   }
 
   handleCommune = async (commune) => {
     if (commune) {
-      const data = await fetchCommuneData(commune)
-      this.setState({ commune: commune, data: data })
+      const { result, resultDate } = await fetchCommuneData(commune)
+      this.setState({ commune: commune, data: result, dataDate: resultDate })
     } else {
-      this.setState({ commune: commune, data: null })
+      this.setState({ commune: commune, data: null, dataDate: null })
     }
   }
 
@@ -26,9 +27,12 @@ class App extends React.Component {
     return(
       <div className='container'>
         <img className='coronaImage' src={coronaImage} alt='COVID' />
-        <h1 className='tittleLabel'>Casos confirmados acumulados según informe epidemiológico por comuna</h1>
+        <h1 className='tittleLabel'>Datos del coronavirus por comuna en Chile</h1>
         <CommunePicker handleCommune={this.handleCommune}/>
-        <Chart  data={this.state.data} />
+        { this.state.data ? <h3 className='tittleLabel'>Casos confirmados acumulados según informe epidemiológico por comuna</h3> : null }
+        <Chart data={this.state.data} label={'Infectados'} color={'#3333ff'}/>
+        { this.state.dataDate ? <h3 className='tittleLabel'>Casos nuevos infectados según informe epidemiológico por comuna</h3> : null }
+        <Chart data={this.state.dataDate} label={'Infectados Nuevos'} color={'green'}/>
       </div>
     )
   }
