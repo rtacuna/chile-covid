@@ -13,7 +13,7 @@ const GeneralData = ({ data: { confirmed, newConfirmed }}) => {
             <Typography variant='h5'>
               <CountUp start={0} end={confirmed} duration={1.5} separator={','} />
             </Typography>
-            <Typography variant='body2'>Número de casos infectados por COVID-19 en la comuna</Typography>
+            <Typography variant='body2'>Número de casos totales infectados por COVID-19</Typography>
           </CardContent>
         </Grid>
         <Grid item component={Card} xs={12} md={4} className='card'>
